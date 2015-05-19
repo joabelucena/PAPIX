@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Principal {
 
     private static Scanner teclado;
+    private static int nHifen = 50;
 
 	/**
      * @param args the command line arguments
@@ -29,14 +30,20 @@ public class Principal {
         //Vetores com os Graus de Pertinencia
         double[] MI_IN_UMID_DES = new double[3];
         double[] MI_IN_UMID_AMB = new double[4];
-        
         double[] MI_OUT_UMID_TEMP = new double[4];
         double[] MI_OUT_UMID_BORR = new double[4];
         
-        double tempBaixa, tempMedia, tempAlta, pressaoPouca, pressaoMuita;
+        //Limites para a construção do grafico
+        double L_OUT_UMID_TEMP, R_OUT_UMID_TEMP;
+        double L_OUT_UMID_BORR, R_OUT_UMID_BORR;
+        
+        //Variavel de controle para continuar laco de repeticao
         String continua;
-
+        
         do { //Laco para controlar a entrada de novos valores
+        	
+        	System.out.println("*** Novo Calculo de Controle de Umidade ***");
+        	System.out.println();
 
             /**
              * ***********************************************************************
@@ -48,7 +55,7 @@ public class Principal {
             // Controle: IN_UMID_DES (U:[60, 80])
             do {
                 System.out.println("Digite a Umidade Desejada entre 60 e 80: ");
-                IN_UMID_DES = teclado.nextDouble();
+                IN_UMID_DES = teclado.nextDouble();                	
             } while (IN_UMID_DES < 60 || IN_UMID_DES > 80);
 
             // Controle: IN_UMID_AMB (U:[45, 90])
@@ -138,15 +145,19 @@ public class Principal {
             }
             
             
-            System.out.println("\nGraus de pertinencia das ENTRADAS:");
-            System.out.println("Umidade de Desejada: BAIXA = " 	+ MI_IN_UMID_DES[0]);
-            System.out.println("Umidade de Desejada: MEDIA = " 	+ MI_IN_UMID_DES[1]);
-            System.out.println("Umidade de Desejada: ALTA = " 	+ MI_IN_UMID_DES[2]);
+            System.out.println();
+            
+            System.out.println("- Graus de pertinencia das ENTRADAS:");
+            System.out.println("Umidade de Desejada: BAIXA: \t" 	+ MI_IN_UMID_DES[0]);
+            System.out.println("Umidade de Desejada: MEDIA: \t" 	+ MI_IN_UMID_DES[1]);
+            System.out.println("Umidade de Desejada: ALTA: \t" 	+ MI_IN_UMID_DES[2]);
+            
+            System.out.println();
 
-            System.out.println("\nUmidade de Detectada: MUITO BAIXA = "	+ MI_IN_UMID_AMB[0]);
-            System.out.println("Umidade de Detectada: POUCO BAIXA = "	+ MI_IN_UMID_AMB[1]);
-            System.out.println("Umidade de Detectada: POUCO ALTA = " 	+ MI_IN_UMID_AMB[2]);
-            System.out.println("Umidade de Detectada: MUITO ALTA = " 	+ MI_IN_UMID_AMB[3]);
+            System.out.println("Umidade de Detectada: MUITO BAIXA: \t"	+ MI_IN_UMID_AMB[0]);
+            System.out.println("Umidade de Detectada: POUCO BAIXA: \t"	+ MI_IN_UMID_AMB[1]);
+            System.out.println("Umidade de Detectada: POUCO ALTA: \t" 	+ MI_IN_UMID_AMB[2]);
+            System.out.println("Umidade de Detectada: MUITO ALTA: \t" 	+ MI_IN_UMID_AMB[3]);
 
             /**
              * ***********************************************************************
@@ -229,17 +240,20 @@ public class Principal {
             if(MI_OUT_UMID_TEMP[2] == 0) MI_OUT_UMID_TEMP[2] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[2]);
             
 			// mostrando os valores de pertinencia calculados
-            System.out.println("\nGraus de pertinencia da SAIDA:");
+            System.out.println();
+            System.out.println("- Graus de pertinencia da SAIDA:");
             
-            System.out.println("Saida Aquecedor: NAO AQUECE = " 			+ MI_OUT_UMID_TEMP[0]);
-            System.out.println("Saida Aquecedor: AQUECE MUITO POUCO = "		+ MI_OUT_UMID_TEMP[1]); 
-            System.out.println("Saida Aquecedor: AQUECE POUCO = "			+ MI_OUT_UMID_TEMP[2]);
-            System.out.println("Saida Aquecedor: AQUECE MUITO = "			+ MI_OUT_UMID_TEMP[3]);
+            System.out.println("Saida Aquecedor: NAO AQUECE: \t\t" 			+ MI_OUT_UMID_TEMP[0]);
+            System.out.println("Saida Aquecedor: AQUECE MUITO POUCO: \t"	+ MI_OUT_UMID_TEMP[1]); 
+            System.out.println("Saida Aquecedor: AQUECE POUCO: \t\t"		+ MI_OUT_UMID_TEMP[2]);
+            System.out.println("Saida Aquecedor: AQUECE MUITO: \t\t"		+ MI_OUT_UMID_TEMP[3]);
             
-            System.out.println("\nSaida Borrifador: NAO BORRIFA = "			+ MI_OUT_UMID_BORR[0]);
-            System.out.println("Saida Borrifador: BORRIFA MUITO POUCO = "	+ MI_OUT_UMID_BORR[1]);
-            System.out.println("Saida Borrifador: BORRIFA POUCO = "			+ MI_OUT_UMID_BORR[2]);
-            System.out.println("Saida Borrifador: BORRIFA MUITO = "			+ MI_OUT_UMID_BORR[3]);
+            System.out.println();
+            
+            System.out.println("- Saida Borrifador: NAO BORRIFA: \t"		+ MI_OUT_UMID_BORR[0]);
+            System.out.println("Saida Borrifador: BORRIFA MUITO POUCO: \t"	+ MI_OUT_UMID_BORR[1]);
+            System.out.println("Saida Borrifador: BORRIFA POUCO: \t"		+ MI_OUT_UMID_BORR[2]);
+            System.out.println("Saida Borrifador: BORRIFA MUITO: \t"		+ MI_OUT_UMID_BORR[3]);
             
             
             /**
@@ -249,9 +263,10 @@ public class Principal {
              *
              * ***********************************************************************
              */
-            System.out.println("\nENTRADAS:");
-            System.out.println("- Umidade Desejada " 	+ IN_UMID_DES + "%");
-            System.out.println("- Umidade Detectada " 	+ IN_UMID_AMB + "%");
+            System.out.println();
+            System.out.println("ENTRADAS:");
+            System.out.println("- Umidade Desejada:\t"		+ IN_UMID_DES + "%");
+            System.out.println("- Umidade Detectada:\t" 	+ IN_UMID_AMB + "%");
             
             //************************************************************************
             // MEDIA DOS MAXIMOS
@@ -294,95 +309,140 @@ public class Principal {
             
             
             // calculando os limites esquerdo e direito do grafico
-            double limDireito, limEsquerdo;
-            System.out.println("\nCalculo da saida usando MEDIA DOS MAXIMOS");
+            System.out.println();
+            System.out.println("Calculo da saida usando MEDIA DOS MAXIMOS");
+            separador();
             
             /** Aquecimento **/
             if(naoAquece == aqueceMtoPouco && aqueceMtoPouco == aquecePouco && aquecePouco == aqueceMuito){
             	//Todos Iguais
-            	limEsquerdo = 0;
-            	limDireito = 45;
+            	L_OUT_UMID_TEMP = 0.0;
+            	R_OUT_UMID_TEMP = 45.0;
             	
             }else if(naoAquece > aqueceMtoPouco && naoAquece > aquecePouco && naoAquece > aqueceMuito){
             	//naoAquece eh o maior
-            	limEsquerdo = 0;
-            	limDireito = 5.0 - 5.0 * naoAquece;
+            	L_OUT_UMID_TEMP = 0.0;
+            	R_OUT_UMID_TEMP = 5.0 - 5.0 * naoAquece;
             	
             }else if(aqueceMtoPouco > naoAquece && aqueceMtoPouco > aquecePouco && aqueceMtoPouco > aqueceMuito){
             	//aqueceMtoPouco eh o maior
-            	limEsquerdo = 5 * aqueceMtoPouco;
-            	limDireito = 20 - 15 * aqueceMtoPouco;
+            	L_OUT_UMID_TEMP = 5.0 * aqueceMtoPouco;
+            	R_OUT_UMID_TEMP = 20.0 - 15.0 * aqueceMtoPouco;
             	
             }else if(aquecePouco > naoAquece && aquecePouco > aqueceMtoPouco && aquecePouco > aqueceMuito){
             	//aquecePouco eh o maior
-            	limEsquerdo = 15 + 10 * aquecePouco;
-            	limDireito = 15 - 10 * aquecePouco;
+            	L_OUT_UMID_TEMP = 15.0 + 10.0 * aquecePouco;
+            	R_OUT_UMID_TEMP = 15.0 - 10.0 * aquecePouco;
             	
             }else if(aqueceMuito > naoAquece && aqueceMuito > aquecePouco && aqueceMuito > aqueceMtoPouco){
-            	//aquecePouco eh o maior
-            	limEsquerdo = 30 + 15 * aqueceMuito;
-            	limDireito = 45;
+            	//aqueceMuito eh o maior
+            	L_OUT_UMID_TEMP = 30.0 + 15.0 * aqueceMuito;
+            	R_OUT_UMID_TEMP = 45.0;
             	
             }else if(naoAquece == aqueceMtoPouco){
             	//preenche nao aquece e aquecemtopouco
-            	limEsquerdo = 0;
-            	limDireito = 0;
+            	L_OUT_UMID_TEMP = 0.0;
+            	R_OUT_UMID_TEMP = 20.0 - 15.0 * aqueceMtoPouco;
             	
             }else if(aqueceMtoPouco == aquecePouco){
             	//preenche aquecemtoPouco e aquecepouco
-            	limEsquerdo = 0;
-            	limDireito = 0;
+            	L_OUT_UMID_TEMP = 5.0 * aqueceMtoPouco;
+            	R_OUT_UMID_TEMP = 15.0 - 10.0 * aquecePouco;
             	
             }else if(aquecePouco == aqueceMuito){
             	//preenche aquecepouco e aquecemto
-            	limEsquerdo = 0;
-            	limDireito = 0;
+            	L_OUT_UMID_TEMP = 15.0 + 10.0 * aquecePouco;
+            	R_OUT_UMID_TEMP = 45.0;
             
             }else{
-            	limEsquerdo = 0;
-            	limDireito = 45;
+            	L_OUT_UMID_TEMP = 0.0;
+            	R_OUT_UMID_TEMP = 45.0;
             }
-            /*
             
-            if (vazaoPequena == vazaoRegular && vazaoRegular == vazaoGrande) {
-                limEsquerdo = 0;
-                limDireito = 5;
-            } else if (vazaoPequena > vazaoRegular && vazaoPequena > vazaoGrande) {
-                limDireito = 2.5 - 2.0 * vazaoPequena;
-                limEsquerdo = 0;
-            } else if (vazaoGrande > vazaoPequena && vazaoGrande > vazaoRegular) {
-                limEsquerdo = 2.0 * vazaoGrande + 2.5;
-                limDireito = 5;
-            } else if (vazaoRegular > vazaoPequena && vazaoRegular > vazaoGrande) {
-                limEsquerdo = 2.0 * vazaoRegular + 0.5;
-                limDireito = 4.5 - 2.0 * vazaoRegular;
-            } else if (vazaoPequena == vazaoRegular) {
-                limEsquerdo = 0;
-                limDireito = 4.5 - 2.0 * vazaoRegular;
-            } else if (vazaoRegular == vazaoGrande) {
-                limEsquerdo = 2.0 * vazaoRegular + 0.5;
-                limDireito = 5;
-            } else { //if(vazaoPequena == vazaoGrande){
-                limEsquerdo = 0;
-                limDireito = 5;
+            /** Borrifacao **/
+            if(naoBorrifa == borrifaMtoPouco && borrifaMtoPouco == borrifaPouco && borrifaPouco == borrifaMuito){
+            	//Todos Iguais
+            	L_OUT_UMID_BORR = 0.0;
+            	R_OUT_UMID_BORR = 10.0;
+            	
+            }else if(naoBorrifa > borrifaMtoPouco && naoBorrifa > borrifaPouco && naoBorrifa > borrifaMuito){
+            	//naoBorrifa eh o maior
+            	L_OUT_UMID_BORR = 0.0;
+            	R_OUT_UMID_BORR = 1.0 - naoBorrifa;
+            	
+            }else if(borrifaMtoPouco > naoBorrifa && borrifaMtoPouco > borrifaPouco && borrifaMtoPouco > borrifaMuito){
+            	//borrifaMtoPouco eh o maior
+            	L_OUT_UMID_BORR = borrifaMtoPouco;
+            	R_OUT_UMID_BORR = 4.0 - 3.0 * borrifaMtoPouco;
+            	
+            }else if(borrifaPouco > naoBorrifa && borrifaPouco > borrifaMtoPouco && borrifaPouco > borrifaMuito){
+            	//borrifaPouco eh o maior
+            	L_OUT_UMID_BORR = 6.0 + 3.0 * borrifaPouco;
+            	R_OUT_UMID_BORR = 7.0 - borrifaPouco;
+            	
+            }else if(borrifaMuito > naoBorrifa && borrifaMuito > borrifaPouco && borrifaMuito > borrifaMtoPouco){
+            	//borrifaMuito eh o maior
+            	L_OUT_UMID_BORR = 6.0 + 4.0 * borrifaMuito;
+            	R_OUT_UMID_BORR = 10.0;
+            	
+            }else if(naoBorrifa == borrifaMtoPouco){
+            	//preenche nao aquece e borrifaMtoPouco
+            	L_OUT_UMID_BORR = 0.0;
+            	R_OUT_UMID_BORR = 20.0 - 15.0 * borrifaMtoPouco;
+            	
+            }else if(borrifaMtoPouco == borrifaPouco){
+            	//preenche borrifaMtoPouco e borrifaPouco
+            	L_OUT_UMID_BORR = 5.0 * borrifaMtoPouco;
+            	R_OUT_UMID_BORR = 15.0 - 10.0 * borrifaPouco;
+            	
+            }else if(borrifaPouco == borrifaMuito){
+            	//preenche borrifaPouco e aquecemto
+            	L_OUT_UMID_BORR = 15.0 + 10.0 * borrifaPouco;
+            	R_OUT_UMID_BORR = 45.0;
+            
+            }else{
+            	L_OUT_UMID_BORR = 0.0;
+            	R_OUT_UMID_BORR = 10.0;
             }
-            */
+            
+            //MEDIA
+            OUT_UMID_TEMP = (L_OUT_UMID_TEMP + R_OUT_UMID_TEMP)/2;
+            OUT_UMID_BORR = (L_OUT_UMID_BORR + R_OUT_UMID_BORR)/2;
 
+            
             // usando a tecnica media dos maximos para calcular o valor da vazao
-            System.out.println("limEsquerdo = " + limEsquerdo);
-            System.out.println("limDireito = " + limDireito);
-            //valVazao = (limEsquerdo + limDireito) / 2;
-
+            System.out.println("Limite Esquerdo (Aquecedor):\t" + L_OUT_UMID_TEMP);
+            System.out.println("Limite Direito (Aquecedor):\t" + R_OUT_UMID_TEMP);
+            
+            System.out.println("Limite Esquerdo (Borrifador):\t" + L_OUT_UMID_BORR);
+            System.out.println("Limite Direito (Borrifador):\t" + R_OUT_UMID_BORR);
+            
+            System.out.println();
+            
+            separador();
+            System.out.println("SAIDAS:");
+            
             // mostrando o valor da vazao calculado para as entradas digitadas
-            System.out.print("Aquecimento = ");
-            System.out.printf("%.2f", (limEsquerdo + limDireito) / 2);
-            System.out.println(" graus");
+            System.out.println("Aquecedor(ºC): \t "	+ OUT_UMID_TEMP);
+            System.out.println("Borrifador(L/h): "	+ OUT_UMID_BORR);
 
             // verificando se o usuario quer digitar mais valores
-            System.out.println("\nDeseja digitar mais valores? (S/N): ");
+            System.out.println();
+            System.out.println("Deseja digitar mais valores? (S/N): ");
             continua = teclado.next();
 
         } while (!continua.toUpperCase().equals("N")); // retorna ao primeiro DO
+        
+        separador();
+        System.out.println("Obrigado por utilizar nossos servcos de Calculo de Estufa!");
+        System.out.println();
+        System.out.println("That's all Folks!");
 
     }
+    
+    public static void separador(){
+    	System.out.println(String.format(String.format("%%0%dd", nHifen), 0).replace("0","-"));
+    }
+    
+    
 }
