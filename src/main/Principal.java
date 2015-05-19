@@ -180,54 +180,53 @@ public class Principal {
              * MI_OUT_UMID_BORR[3]: BORRIFA MUITO
              * 
             *****************************************/
-            
 			//01) SE Umidade Detectada = Muito Baixa		 	E Umidade Desejada = Baixa ENTAO Borrifador = Borrifa Pouco e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[2] = Math.min(Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[0]), MI_OUT_UMID_BORR[2]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[0]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[2] == 0) MI_OUT_UMID_BORR[2] = Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[0]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[0]);
 			
 			//02) SE Umidade Detectada = Pouco Baixa			E Umidade Desejada = Baixa ENTAO Borrifador = Não Borrifa 	e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[0]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[0]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[0]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[0]);
 			
 			//03) SE Umidade Detectada = Pouco Alta				E Umidade Desejada = Baixa ENTAO Borrifador = Não Borrifa 	e Aquecedor = Aquece Pouco
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[0]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[2] = Math.min(Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[0]), MI_OUT_UMID_TEMP[2]);
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[0]);
+            if(MI_OUT_UMID_TEMP[2] == 0) MI_OUT_UMID_TEMP[2] = Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[0]);
 			
 			//04) SE Umidade Detectada = Muito Alta				E Umidade Desejada = Baixa ENTAO Borrifador = Não Borrifa 	e Aquecedor = Aquece Muito
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[0]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[3] = Math.min(Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[0]), MI_OUT_UMID_TEMP[3]);
-			
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[0]);
+            if(MI_OUT_UMID_TEMP[3] == 0) MI_OUT_UMID_TEMP[3] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[0]);
+            
 			//05) SE Umidade Detectada = Muito Baixa			E Umidade Desejada = Média ENTAO Borrifador = Borrifa Pouco e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[2] = Math.min(Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[1]), MI_OUT_UMID_BORR[2]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[1]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[2] == 0) MI_OUT_UMID_BORR[2] = Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[1]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[1]);
 			
 			//06) SE Umidade Detectada = Pouco Baixa			E Umidade Desejada = Média ENTAO Borrifador = Borrifa Pouco e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[2] = Math.min(Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[1]), MI_OUT_UMID_BORR[2]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[1]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[2] == 0) MI_OUT_UMID_BORR[2] = Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[1]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[1]);
 			
 			//07) SE Umidade Detectada = Pouco Alta				E Umidade Desejada = Média ENTAO Borrifador = Não Borrifa 	e Aquecedor = Aquece Pouco
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[1]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[2] = Math.min(Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[1]), MI_OUT_UMID_TEMP[2]);
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[1]);
+            if(MI_OUT_UMID_TEMP[2] == 0) MI_OUT_UMID_TEMP[2] = Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[1]);
 			
 			//08) SE Umidade Detectada = Muito Alta				E Umidade Desejada = Média ENTAO Borrifador = Não Borrifa 	e Aquecedor = Aquece Pouco
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[1]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[2] = Math.min(Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[1]), MI_OUT_UMID_TEMP[2]);
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[1]);
+            if(MI_OUT_UMID_TEMP[2] == 0) MI_OUT_UMID_TEMP[2] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[1]);
 			
 			//09) SE Umidade Detectada = Muito Baixa			E Umidade Desejada = Alta  ENTAO Borrifador = Borrifa Muito e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[3] = Math.min(Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[2]), MI_OUT_UMID_BORR[3]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[2]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[3] == 0) MI_OUT_UMID_BORR[3] = Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[2]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[0], MI_IN_UMID_DES[2]);
 			
 			//10) SE Umidade Detectada = Pouco Baixa			E Umidade Desejada = Alta  ENTAO Borrifador = Borrifa Pouco e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[2] = Math.min(Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[2]), MI_OUT_UMID_BORR[2]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[2]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[2] == 0) MI_OUT_UMID_BORR[2] = Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[2]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[1], MI_IN_UMID_DES[2]);
 			
 			//11) SE Umidade Detectada = Pouco Alta				E Umidade Desejada = Alta  ENTAO Borrifador = Não Borrifa 	e Aquecedor = Não Aquece
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[2]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[0] = Math.min(Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[2]), MI_OUT_UMID_TEMP[0]);
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[2]);
+            if(MI_OUT_UMID_TEMP[0] == 0) MI_OUT_UMID_TEMP[0] = Math.min(MI_IN_UMID_AMB[2], MI_IN_UMID_DES[2]);
 			
 			//12) SE Umidade Detectada = Muito Alta				E Umidade Desejada = Alta  ENTAO Borrifador = Não Borrifa 	e Aquecedor = Aquece Pouco
-			MI_OUT_UMID_BORR[0] = Math.min(Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[2]), MI_OUT_UMID_BORR[0]);
-			MI_OUT_UMID_TEMP[2] = Math.min(Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[2]), MI_OUT_UMID_TEMP[2]);
+            if(MI_OUT_UMID_BORR[0] == 0) MI_OUT_UMID_BORR[0] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[2]);
+            if(MI_OUT_UMID_TEMP[2] == 0) MI_OUT_UMID_TEMP[2] = Math.min(MI_IN_UMID_AMB[3], MI_IN_UMID_DES[2]);
             
 			// mostrando os valores de pertinencia calculados
             System.out.println("\nGraus de pertinencia da SAIDA:");
